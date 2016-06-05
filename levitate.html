@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Levitate Pro 1.0  -->
+<!-- Levitate Pro 1.1  -->
 <!-- by Fuse.  fuseblue.com, twitter.com/askfuse  -->
 <!-- Help and FAQ: fuseblue.com/help -->
 
@@ -110,7 +110,7 @@
             <meta name="text:TypeKit ID" content=""/>
             <meta name="text:TypeKit Font" content=""/>
             <meta name="if:Fuse Credit" content="1"/>
-            <meta name="if:Site Preloader" content="1"/>
+            <!-- <meta name="if:Site Preloader" content="1"/> -->
         {/block:Hidden}
         <!-- Global Scripts -->
         <script>
@@ -131,7 +131,7 @@
         <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="http://static.tumblr.com/b5aw2yz/VW3nj01lh/twemoji-awesome.css">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family={select:Font}:400,400italic,700,700italic">
-        <link rel="stylesheet" href="http://static.tumblr.com/evx2wil/kBoo7gc1s/ants-core.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/evx2wil/ouao8asma/ants-core.css">
 
         <style type="text/css">
             /* scrollbars */
@@ -402,7 +402,7 @@
                 text-transform: uppercase;
                 cursor: pointer;
                 font-size: 15px;
-                color: #3D3D3D;
+                color: {color:Text};
             }
             @media (max-width: 550px) {
                 .fuse-border-left, .fuse-border-right {
@@ -422,7 +422,7 @@
                 margin: 0 10px 0 0;
             }
             .fuse-border-left svg, .fuse-border-right svg {
-                 fill: #3D3D3D!important;
+                 fill: {color:Text}!important;
             }
             @media (max-width: 550px) {
                 .fuse-border-left svg, .fuse-border-right svg {
@@ -564,7 +564,6 @@
                 margin: 0 0 10px;
             }
             .fuse-overlay {
-                /*background: rgba(255,255,255,.98);*/
                 background: {BackgroundColor};
                 top: 0;
                 left: 0;
@@ -669,7 +668,6 @@
                 height: 15px;
                 overflow: hidden;
             }
-   
             #fuse-sc-player .sc-controls {
                 position: absolute;
                 top: 50%;
@@ -769,16 +767,39 @@
                 transition: opacity .5s;
                 opacity: 0;
             }
+            /* Demo */
+            .demo-note {
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0,0,0,.7);
+                color: #fff;
+                font-size: 14px;
+                border-radius: 2px;
+                padding: 8px 14px;
+                text-align: center;
+                line-height: 1;
+                z-index: 999999;
+            }
+            .demo-note small {
+                font-size: 11px;
+                margin: 0 0 5px;
+                display: block;
+            }
+            .demo-note:hover {
+                color: #fff;
+                background: rgba(0,0,0,1);
+            }
             /* Custom CSS */
             {CustomCSS}
         </style>
     </head>
     <body class="{block:IndexPage}index{/block:IndexPage}{block:PermalinkPage} permalink{/block:PermalinkPage}">
-        {block:IfSitePreloader}
-            <div id="fuse-preloader">
-                <svg width='60px' height='60px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring-alt"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><circle cx="50" cy="50" r="40" stroke="none" fill="none" stroke-width="10" stroke-linecap="round"></circle><circle cx="50" cy="50" r="40" stroke="{AccentColor}" fill="none" stroke-width="6" stroke-linecap="round"><animate attributeName="stroke-dashoffset" dur="2s" repeatCount="indefinite" from="0" to="502"></animate><animate attributeName="stroke-dasharray" dur="2s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"></animate></circle></svg>
-            </div>
-        {/block:IfSitePreloader}
+        <a class='customize-demo demo-note' href='http://levitatepro.tumblr.com/' target='_blank'><small>Our themes are jam-packed with features</small><b>Preview the demo</b></a>
+        <div id="fuse-preloader">
+            <svg width='60px' height='60px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring-alt"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><circle cx="50" cy="50" r="40" stroke="none" fill="none" stroke-width="10" stroke-linecap="round"></circle><circle cx="50" cy="50" r="40" stroke="{AccentColor}" fill="none" stroke-width="6" stroke-linecap="round"><animate attributeName="stroke-dashoffset" dur="2s" repeatCount="indefinite" from="0" to="502"></animate><animate attributeName="stroke-dasharray" dur="2s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"></animate></circle></svg>
+        </div>
 <div class="fuse-overlay">
     
     <div class='fuse-container'>
@@ -986,27 +1007,28 @@
         </header>
         <div id="fuse">
             <div class="wrap cl">
-                {block:PermalinkPage}
+            <div id="fuse-ants">
+                <div class="ants-sizer-three"></div>
+                <div class="ants-gutter-three"></div>
                     {block:Posts}
-                        <input id="post-notes-url" type="hidden" value="{PostNotesURL}">
                         {block:Photo}
-                            <article id="{PostID}" class="post-photo" data-pt="photo">
+                            <article id="ant-{PostID}" class="ants-item-three post post-photo" data-pt="photo" data-id="{PostID}">
+                                <input id="post-notes-url" type="hidden" value="{PostNotesURL}">
                                 <div class="media">
-                                    {block:PermalinkPage}
-                                        {LinkOpenTag}
-                                            <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
-                                        {LinkCloseTag}
-                                    {/block:PermalinkPage}
+                                    {LinkOpenTag}
+                                        <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                                    {LinkCloseTag}
                                 </div>
-                                {block:Caption}     
-                                    <div class="content">
-                                        {Caption}
-                                    </div>
-                                {/block:Caption}
+                                {block:PermalinkPage}     
+                                    {block:Caption}     
+                                        <div class="content">
+                                            {Caption}
+                                        </div>
+                                    {/block:Caption}
+                                {/block:PermalinkPage}     
                         {/block:Photo}
-                        
                         {block:Photoset}
-                            <article id="{PostID}" class="post-photoset" data-pt="photoset">
+                            <article id="ant-{PostID}" class="ants-item-three post post-photoset" data-pt="photoset" data-id="{PostID}">
                                 <div class="media">
                                     <div class="fuse-photoset ips">
                                         <div class="ps-nav-left"></div>
@@ -1021,15 +1043,16 @@
                                         </div>
                                     </div>
                                 </div>
+                                {block:PermalinkPage}     
                                 {block:Caption}     
                                     <div class="content">
                                         {Caption}
                                     </div>
                                 {/block:Caption}
+                                {/block:PermalinkPage}     
                         {/block:Photoset}
-
                         {block:Text}
-                            <article id="{PostID}" class="post-text" data-pt="text">
+                            <article id="ant-{PostID}" class="ants-item-three post post-text" data-pt="text" data-id="{PostID}">
                                 <div class="media">
                                     {block:Title}<h2 class="post-title"><a href="{Permalink}" title="{lang:Continue reading} {lang:Post}">{Title}</a></h2>{/block:Title}
                                     {Body}
@@ -1040,9 +1063,8 @@
                                     </div>
                                 {/block:Caption}
                         {/block:Text}        
-            
                         {block:Audio}      
-                            <article id="{PostID}" class="post-audio" data-pt="audio">
+                            <article id="{ant-PostID}" class="ants-item-three post post-audio" data-pt="audio" data-id="{PostID}">
                                 <div class="media">
                                     <div class="albumart">{block:AlbumArt}<img src="{AlbumArtURL}" width="500" height="500"/>{/block:AlbumArt}</div>
                                     <div class="player">{AudioPlayerBlack}</div>
@@ -1054,9 +1076,8 @@
                                     </div>
                                 {/block:Caption}
                         {/block:Audio}      
-        
                         {block:Video}
-                            <article id="{PostID}" class="post-video" data-pt="video">
+                            <article id="ant-{PostID}" class="ants-item-three post post-video" data-pt="video" data-id="{PostID}">
                                 <div class="media">{Video-500}</div>
                                 {block:Caption}     
                                     <div class="content">
@@ -1064,9 +1085,8 @@
                                     </div>
                                 {/block:Caption}
                         {/block:Video}
-                
                         {block:Quote}
-                            <article id="{PostID}" class="post-quote" data-pt="quote">
+                            <article id="ant-{PostID}" class="ants-item-three post post-quote" data-pt="quote" data-id="{PostID}">
                                 <div class="media">
                                     <blockquote>{Quote}</blockquote>
                                     <figcaption>{block:Source}- {Source}{/block:Source}</figcaption>
@@ -1077,10 +1097,8 @@
                                     </div>
                                 {/block:Caption}
                         {/block:Quote}      
-                    
-                
-                         {block:Link}
-                            <article id="{PostID}" class="post-link" data-pt="link">
+                        {block:Link}
+                            <article id="ant-{PostID}" class="ants-item-three post post-link" data-pt="link" data-id="{PostID}">
                                 <div class="media">
                                     <h1><a class="link" href="{URL}">{Name}</a></h1>
                                     {block:Description}{Description}{/block:Description}
@@ -1091,11 +1109,12 @@
                                     </div>
                                 {/block:Caption}
                         {/block:Link}   
-          
-               
                         {block:Chat}
-                            <article id="{PostID}" class="post-chat" data-pt="chat"> 
+                            <article id="ant-{PostID}" class="ants-item-three post post-chat" data-pt="chat" data-id="{PostID}"> 
                                 <div class="media">
+                                    {block:Title}
+                                        <h3>{Title}</h3>
+                                    {/block:Title}    
                                     <ul class="chat">
                                         {block:Lines}<li class="{Alt}">{block:Label}<span class="person">{Label}</span>{/block:Label}<span class="said"> {Line} </span></li>{/block:Lines}
                                     </ul>
@@ -1105,10 +1124,9 @@
                                         {Caption}
                                     </div>
                                 {/block:Caption}
-                        {/block:Chat}   
-                            
+                        {/block:Chat}
                         {block:Answer}
-                            <article id="{PostID}" class="post-answer" data-pt="answer">
+                            <article id="ant-{PostID}" class="ants-item-three post post-answer" data-pt="answer" data-id="{PostID}">
                                 <div class="media">
                                     <div class="asker-box cl">
                                         <img src="{AskerPortraitURL-24}"/><span class="the-asker">{Asker} asked: {Question}</span>
@@ -1123,79 +1141,78 @@
                                     </div>
                                 {/block:Caption}
                         {/block:Answer}
-                        
-                        
-                        {block:Date}
-                            <div class="post-meta cl">
-                                <div class="meta left">
-                                    <a href="{Permalink}" class="meta-date">
-                                        <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{DayOfMonth}{DayOfMonthSuffix} {Month} {Year}</time> 
-                                    </a>
-                                    {block:NoteCount} 
-                                        <a href="{Permalink}" class="meta-notes">{NoteCountWithLabel}</a>
-                                    {/block:NoteCount}
-                                </div>
-                                <ul class="share permalink right">
-                                    <li class="tooltip post-share-parent" title="Share this post">
-                                        <a class="post-share-toggle"><i class="fa fa-share"></i></a>
-                                        <ul class="standard-share">
-                                            <span class="share-facebook" title="Share on Facebook"><a href="https://www.facebook.com/sharer.php?u={Permalink}{block:Title}&t={Title}{/block:Title}" target="_new"><i class="fa fa-facebook"></i>Facebook</a></span>
-                                            <span class="share-twitter" title="Share on Twitter"><a href="https://twitter.com/intent/tweet?url={ShortURL}" target="_new"><i class="fa fa-twitter"></i>Twitter</a></span>
-                                            <span class="share-google" title="Share on Google+"><a href="https://plus.google.com/share?url={Permalink}" target="_new"><i class="fa fa-google-plus"></i>Google +</a></span>
+                            {block:PermalinkPage}
+                                {block:Date}
+                                    <div class="post-meta cl">
+                                        <div class="meta left">
+                                            <a href="{Permalink}" class="meta-date">
+                                                <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{DayOfMonth}{DayOfMonthSuffix} {Month} {Year}</time> 
+                                            </a>
+                                            {block:NoteCount} 
+                                                <a href="{Permalink}" class="meta-notes">{NoteCountWithLabel}</a>
+                                            {/block:NoteCount}
+                                        </div>
+                                        <ul class="share permalink right">
+                                            <li class="tooltip post-share-parent" title="Share this post">
+                                                <a class="post-share-toggle"><i class="fa fa-share"></i></a>
+                                                <ul class="standard-share">
+                                                    <span class="share-facebook" title="Share on Facebook"><a href="https://www.facebook.com/sharer.php?u={Permalink}{block:Title}&t={Title}{/block:Title}" target="_new"><i class="fa fa-facebook"></i>Facebook</a></span>
+                                                    <span class="share-twitter" title="Share on Twitter"><a href="https://twitter.com/intent/tweet?url={ShortURL}" target="_new"><i class="fa fa-twitter"></i>Twitter</a></span>
+                                                    <span class="share-google" title="Share on Google+"><a href="https://plus.google.com/share?url={Permalink}" target="_new"><i class="fa fa-google-plus"></i>Google +</a></span>
+                                                </ul>
+                                            </li>
+                                            <li class="post-like tooltip" title="Like this post">
+                                                {LikeButton color="black" size="7"}<i class="fa fa-heart"></i>
+                                            </li>
+                                            <li class="post-reblog tooltip" title="Reblog this post">
+                                                <a href="{ReblogURL}"><i class="fa fa-lg fa-retweet"></i></a>
+                                            </li>
                                         </ul>
-                                    </li>
-                                    <li class="post-like tooltip" title="Like this post">
-                                        {LikeButton color="black" size="7"}<i class="fa fa-heart"></i>
-                                    </li>
-                                    <li class="post-reblog tooltip" title="Reblog this post">
-                                        <a href="{ReblogURL}"><i class="fa fa-lg fa-retweet"></i></a>
-                                    </li>
-                                </ul>
-                                {block:HasTags}
-                                    <ul class="tags">{block:Tags}<li> <a href="{TagURL}">#{Tag}</a> </li>{/block:Tags}</ul>
-                                {/block:HasTags}    
-                            </div>
-                        {/block:Date}
-                    </article>
-                        
-                        {block:NoteCount}
-                            <div id="permalink-notes" class="cl">
-                                {PostNotes}
-                            </div><!-- /.notes -->
-                        {/block:NoteCount}
-                        {block:PermalinkPagination}
-                            <div class="post-navigation">
-                                {block:NextPost}
-                                    <div class='fuse-prev-btn tooltip' title="Previous post">
-                                        <a href="{NextPost}"><i class="fa fa-lg fa-long-arrow-left"></i></a>
+                                        {block:HasTags}
+                                            <ul class="tags">{block:Tags}<li> <a href="{TagURL}">#{Tag}</a> </li>{/block:Tags}</ul>
+                                        {/block:HasTags}    
                                     </div>
-                                {/block:NextPost}
-                                        
-                                {block:PreviousPost}
-                                    <div class='fuse-next-btn tooltip' title="Next post">
-                                        <a href="{PreviousPost}"><i class="fa fa-lg fa-long-arrow-right"></i></a>
+                                {/block:Date}
+                                {block:NoteCount}
+                                    <div id="permalink-notes" class="cl">
+                                        {PostNotes}
+                                    </div><!-- /.notes -->
+                                {/block:NoteCount}
+                                {block:PermalinkPagination}
+                                    <div class="post-navigation">
+                                        {block:NextPost}
+                                            <div class='fuse-prev-btn tooltip' title="Previous post">
+                                                <a href="{NextPost}"><i class="fa fa-lg fa-long-arrow-left"></i></a>
+                                            </div>
+                                        {/block:NextPost}
+                                                
+                                        {block:PreviousPost}
+                                            <div class='fuse-next-btn tooltip' title="Next post">
+                                                <a href="{PreviousPost}"><i class="fa fa-lg fa-long-arrow-right"></i></a>
+                                            </div>
+                                        {/block:PreviousPost}
                                     </div>
-                                {/block:PreviousPost}
-                            </div>
-                        {/block:PermalinkPagination}
+                                {/block:PermalinkPagination}
+                            {/block:PermalinkPage}
+                        </article>
                     {/block:Posts}
-                {/block:PermalinkPage}
+                    </article>
             </div>
+        </div>
         </div>
         <div id="backToTop">
             <i class="fa fa-lg fa-caret-up"></i>
         </div>
-
         <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous"></script>
         <script src="http://static.tumblr.com/evx2wil/pwzo7gc2k/plugins.js"></script>
-        <script src="http://static.tumblr.com/evx2wil/RQlo7gc2u/modal.js"></script>
-        <script src="http://static.tumblr.com/evx2wil/AoVo7gc33/ants.js"></script>
+        <script src="http://static.tumblr.com/evx2wil/JD0o80rxz/modal.js"></script>
+        <script src="http://static.tumblr.com/evx2wil/ZJAo8avwg/ants.js"></script>
+        <script src="http://static.tumblr.com/evx2wil/awmo8avlt/demo.js"></script>
 
-        {block:IfSoundcloudWidgetURL}
+        {block:IfSoundcloudWidgetURL} 
             <script src="https://w.soundcloud.com/player/api.js"></script>
             <script src="http://static.tumblr.com/evx2wil/riCo7gc3e/sc.js"></script>
         {/block:IfSoundcloudWidgetURL}
-
         {block:IfTypeKitID}
             <script type="text/javascript" src="//use.typekit.net/{text:TypeKit ID}.js"></script>
             <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -1261,71 +1278,79 @@
                         }
                     });
                 });
+                {block:IndexPage}
+                    $antsIsoCont = $('#fuse-ants');
+                    antsIsotope = $antsIsoCont.isotope({
+                        transitionDuration: 0,
+                        hiddenStyle: {opacity: 0},
+                        visibleStyle: {opacity: 0},
+                        itemSelector: '.ants-item-three',
+                        percentPosition: true,
+                        masonry: {
+                            columnWidth: '.ants-sizer-three',
+                            gutter: '.ants-gutter-three' 
+                        }
+                    });
+                {/block:IndexPage}
+                if (window.location.pathname.indexOf('customize_preview') == -1) {
+                    $('.customize-demo').remove();
+                }
             })(window.jQuery);
-            {block:IfSitePreloader}
-                $(window).load(function(){
-                    $('#fuse-preloader svg').css('opacity', 1);
+            $(window).load(function(){
+                $('#fuse-preloader svg').css('opacity', 1);
+            });
+        </script>
+        <script>
+            {block:IfGoogleAnalyticsID}  
+                var _gaq=[['_setAccount','{text:Google Analytics ID}'],['_trackPageview']];
+                (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+                g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+                s.parentNode.insertBefore(g,s)}(document,'script'));
+            {/block:IfGoogleAnalyticsID}  
+            {block:IfFlickrUserID}  
+                var link_str = "link";
+                
+                $('.flickr-feed').jflickrfeed({
+                limit: {text:Flickr Widget Feed Count},
+                qstrings: {
+                id: '{text:Flickr User ID}'
+                },
+                itemTemplate: 
+                '<li>' +
+                '<a href="{{' + link_str + '}}"><img src="{{image_m}}" alt="{{title}}" /></a>' +
+                '</li>'
                 });
-            {/block:IfSitePreloader}
-       </script>
-    
-    <script>
-        {block:IfGoogleAnalyticsID}  
-            var _gaq=[['_setAccount','{text:Google Analytics ID}'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        {/block:IfGoogleAnalyticsID}  
-        {block:IfFlickrUserID}  
-            var link_str = "link";
-            
-            $('.flickr-feed').jflickrfeed({
-            limit: {text:Flickr Widget Feed Count},
-            qstrings: {
-            id: '{text:Flickr User ID}'
-            },
-            itemTemplate: 
-            '<li>' +
-            '<a href="{{' + link_str + '}}"><img src="{{image_m}}" alt="{{title}}" /></a>' +
-            '</li>'
-            });
-        {/block:IfFlickrUserID}  
-        
-        {block:Twitter}
-           function recent_tweets(data) {
-              for (i=0; i<{text:Twitter Widget Feed Count}; i++) {
-                document.getElementById("twitter").innerHTML =
-                  document.getElementById("twitter").innerHTML +
-                  '<li class="tweet"><p>' + twttr.txt.autoLink( data[i].text )  +
-                  // &mdash;
-                  '<abbr> <a href="http://twitter.com/{TwitterUsername}/status/' +
-                  (data[i].id_str ? data[i].id_str : data[i].id) +
-                  '" target="_blank">' + moment.utc(data[i].created_at).fromNow() + ' </abbr></a></p></li>';
-              }
-            }
-        {/block:Twitter}
-        
-        {block:IfInstagramWidgetUserID}
-            var userFeed = new Instafeed({get:"user",userId:{text:Instagram Widget UserID},limit:{text:Instagram Widget Feed Count},accessToken:"{text:Instagram Widget Access Token}"});userFeed.run();
-        {/block:IfInstagramWidgetUserID}  
-        
-        {block:IfDribbbleWidgetAccessToken}
-            $.jribbble.setToken('{text:Dribbble Widget Access Token}');
-            $.jribbble.users('{text:Dribbble Widget Username}').shots({per_page: 36}).then(function(shots) {
-              var html = [];
-              
-              shots.forEach(function(shot) {
-                html.push('<li class="shots--shot">');
-                html.push('<a href="' + shot.html_url + '" target="_blank">');
-                html.push('<img src="' + shot.images.normal + '">');
-                html.push('</a></li>');
-              });
-              
-              $('.dribbble-feed').html(html.join(''));
-            });
-        {/block:IfDribbbleWidgetAccessToken}
-    </script>
-
+            {/block:IfFlickrUserID}  
+            {block:Twitter}
+               function recent_tweets(data) {
+                  for (i=0; i<{text:Twitter Widget Feed Count}; i++) {
+                    document.getElementById("twitter").innerHTML =
+                      document.getElementById("twitter").innerHTML +
+                      '<li class="tweet"><p>' + twttr.txt.autoLink( data[i].text )  +
+                      // &mdash;
+                      '<abbr> <a href="http://twitter.com/{TwitterUsername}/status/' +
+                      (data[i].id_str ? data[i].id_str : data[i].id) +
+                      '" target="_blank">' + moment.utc(data[i].created_at).fromNow() + ' </abbr></a></p></li>';
+                  }
+                }
+            {/block:Twitter}
+            {block:IfInstagramWidgetUserID}
+                var userFeed = new Instafeed({get:"user",userId:{text:Instagram Widget UserID},limit:{text:Instagram Widget Feed Count},accessToken:"{text:Instagram Widget Access Token}"});userFeed.run();
+            {/block:IfInstagramWidgetUserID}  
+            {block:IfDribbbleWidgetAccessToken}
+                $.jribbble.setToken('{text:Dribbble Widget Access Token}');
+                $.jribbble.users('{text:Dribbble Widget Username}').shots({per_page: 36}).then(function(shots) {
+                  var html = [];
+                  shots.forEach(function(shot) {
+                    html.push('<li class="shots--shot">');
+                    html.push('<a href="' + shot.html_url + '" target="_blank">');
+                    html.push('<img src="' + shot.images.normal + '">');
+                    html.push('</a></li>');
+                  });
+                  $('.dribbble-feed').html(html.join(''));
+                });
+            {/block:IfDribbbleWidgetAccessToken}
+        </script>
     {block:IfSoundcloudWidgetURL}
         <iframe id="fuse-sc" src="https://w.soundcloud.com/player/?url={text:Soundcloud Widget URL}" width="100%" height="465" scrolling="no" frameborder="no"></iframe>
     {/block:IfSoundcloudWidgetURL}
@@ -1333,5 +1358,6 @@
     {block:Twitter}
         <script type="text/javascript" src="/tweets.js"></script>
     {/block:Twitter}
+
     </body>
 </html>
