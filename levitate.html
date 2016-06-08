@@ -124,7 +124,6 @@
             SHOW_POST_META = {block:IfShowPostMeta}true{/block:IfShowPostMeta}{block:IfNotShowPostMeta}false{/block:IfNotShowPostMeta};
             SHOW_POST_SHARE = {block:IfShowPostShare}true{/block:IfShowPostShare}{block:IfNotShowPostShare}false{/block:IfNotShowPostShare};
             PHOTO_POST_META = {block:IfPhotoPostMeta}true{/block:IfPhotoPostMeta}{block:IfNotPhotoPostMeta}false{/block:IfNotPhotoPostMeta};
-            
         </script>
 
         <!-- CSS -->
@@ -325,7 +324,7 @@
                 opacity: 0;
                 transform: scale(.8);
                 position: absolute;
-                right: 0;
+                right: 20px;
                 top: 30px;
                 transition: opacity .5s;
             }
@@ -1007,198 +1006,198 @@
         </header>
         <div id="fuse">
             <div class="wrap cl">
-            <div id="fuse-ants">
-                <div class="ants-sizer-three"></div>
-                <div class="ants-gutter-three"></div>
-                    {block:Posts}
-                        {block:Photo}
-                            <article id="ant-{PostID}" class="ants-item-three post post-photo" data-pt="photo" data-id="{PostID}">
-                                <input id="post-notes-url" type="hidden" value="{PostNotesURL}">
-                                <div class="media">
-                                    {LinkOpenTag}
-                                        <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
-                                    {LinkCloseTag}
-                                </div>
-                                {block:PermalinkPage}     
+                <div id="fuse-ants">
+                    <div class="ants-sizer-three"></div>
+                    <div class="ants-gutter-three"></div>
+                        {block:Posts}
+                            {block:Photo}
+                                <article id="ant-{PostID}" class="ants-item-three post post-photo" data-pt="photo" data-id="{PostID}">
+                                    <input id="post-notes-url" type="hidden" value="{PostNotesURL}">
+                                    <div class="media">
+                                        {LinkOpenTag}
+                                            <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" />
+                                        {LinkCloseTag}
+                                    </div>
+                                    {block:PermalinkPage}     
+                                        {block:Caption}     
+                                            <div class="content">
+                                                {Caption}
+                                            </div>
+                                        {/block:Caption}
+                                    {/block:PermalinkPage}     
+                            {/block:Photo}
+                            {block:Photoset}
+                                <article id="ant-{PostID}" class="ants-item-three post post-photoset" data-pt="photoset" data-id="{PostID}">
+                                    <div class="media">
+                                        <div class="fuse-photoset ips">
+                                            <div class="ps-nav-left"></div>
+                                            <div class="ps-nav-right"></div>
+                                            <div class="photoset-count" data-id="{PostID}"><span>1</span> / {PhotoCount}</div>
+                                            <div class="photo-slideshow" id="photoset_{PostID}" data-layout="{PhotosetLayout}">
+                                                {block:Photos}
+                                                    <a class="single-photoset" href="{PhotoURL-HighRes}">
+                                                        <img alt="{PhotoAlt}" src="{PhotoURL-HighRes}">
+                                                    </a>
+                                                {/block:Photos}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {block:PermalinkPage}     
                                     {block:Caption}     
                                         <div class="content">
                                             {Caption}
                                         </div>
                                     {/block:Caption}
-                                {/block:PermalinkPage}     
-                        {/block:Photo}
-                        {block:Photoset}
-                            <article id="ant-{PostID}" class="ants-item-three post post-photoset" data-pt="photoset" data-id="{PostID}">
-                                <div class="media">
-                                    <div class="fuse-photoset ips">
-                                        <div class="ps-nav-left"></div>
-                                        <div class="ps-nav-right"></div>
-                                        <div class="photoset-count" data-id="{PostID}"><span>1</span> / {PhotoCount}</div>
-                                        <div class="photo-slideshow" id="photoset_{PostID}" data-layout="{PhotosetLayout}">
-                                            {block:Photos}
-                                                <a class="single-photoset" href="{PhotoURL-HighRes}">
-                                                    <img alt="{PhotoAlt}" src="{PhotoURL-HighRes}">
-                                                </a>
-                                            {/block:Photos}
+                                    {/block:PermalinkPage}     
+                            {/block:Photoset}
+                            {block:Text}
+                                <article id="ant-{PostID}" class="ants-item-three post post-text" data-pt="text" data-id="{PostID}">
+                                    <div class="media">
+                                        {block:Title}<h2 class="post-title"><a href="{Permalink}" title="{lang:Continue reading} {lang:Post}">{Title}</a></h2>{/block:Title}
+                                        {Body}
+                                    </div>
+                                    {block:Caption}     
+                                        <div class="content">
+                                            {Caption}
                                         </div>
+                                    {/block:Caption}
+                            {/block:Text}        
+                            {block:Audio}      
+                                <article id="{ant-PostID}" class="ants-item-three post post-audio" data-pt="audio" data-id="{PostID}">
+                                    <div class="media">
+                                        <div class="albumart">{block:AlbumArt}<img src="{AlbumArtURL}" width="500" height="500"/>{/block:AlbumArt}</div>
+                                        <div class="player">{AudioPlayerBlack}</div>
+                                        {block:AudioEmbed}{AudioEmbed}{/block:AudioEmbed}
                                     </div>
-                                </div>
-                                {block:PermalinkPage}     
-                                {block:Caption}     
-                                    <div class="content">
-                                        {Caption}
-                                    </div>
-                                {/block:Caption}
-                                {/block:PermalinkPage}     
-                        {/block:Photoset}
-                        {block:Text}
-                            <article id="ant-{PostID}" class="ants-item-three post post-text" data-pt="text" data-id="{PostID}">
-                                <div class="media">
-                                    {block:Title}<h2 class="post-title"><a href="{Permalink}" title="{lang:Continue reading} {lang:Post}">{Title}</a></h2>{/block:Title}
-                                    {Body}
-                                </div>
-                                {block:Caption}     
-                                    <div class="content">
-                                        {Caption}
-                                    </div>
-                                {/block:Caption}
-                        {/block:Text}        
-                        {block:Audio}      
-                            <article id="{ant-PostID}" class="ants-item-three post post-audio" data-pt="audio" data-id="{PostID}">
-                                <div class="media">
-                                    <div class="albumart">{block:AlbumArt}<img src="{AlbumArtURL}" width="500" height="500"/>{/block:AlbumArt}</div>
-                                    <div class="player">{AudioPlayerBlack}</div>
-                                    {block:AudioEmbed}{AudioEmbed}{/block:AudioEmbed}
-                                </div>
-                                {block:Caption}     
-                                    <div class="content">
-                                        {Caption}
-                                    </div>
-                                {/block:Caption}
-                        {/block:Audio}      
-                        {block:Video}
-                            <article id="ant-{PostID}" class="ants-item-three post post-video" data-pt="video" data-id="{PostID}">
-                                <div class="media">{Video-500}</div>
-                                {block:Caption}     
-                                    <div class="content">
-                                        {Caption}
-                                    </div>
-                                {/block:Caption}
-                        {/block:Video}
-                        {block:Quote}
-                            <article id="ant-{PostID}" class="ants-item-three post post-quote" data-pt="quote" data-id="{PostID}">
-                                <div class="media">
-                                    <blockquote>{Quote}</blockquote>
-                                    <figcaption>{block:Source}- {Source}{/block:Source}</figcaption>
-                                </div>
-                                {block:Caption}     
-                                    <div class="content">
-                                        {Caption}
-                                    </div>
-                                {/block:Caption}
-                        {/block:Quote}      
-                        {block:Link}
-                            <article id="ant-{PostID}" class="ants-item-three post post-link" data-pt="link" data-id="{PostID}">
-                                <div class="media">
-                                    <h1><a class="link" href="{URL}">{Name}</a></h1>
-                                    {block:Description}{Description}{/block:Description}
-                                </div>
-                                {block:Caption}     
-                                    <div class="content">
-                                        {Caption}
-                                    </div>
-                                {/block:Caption}
-                        {/block:Link}   
-                        {block:Chat}
-                            <article id="ant-{PostID}" class="ants-item-three post post-chat" data-pt="chat" data-id="{PostID}"> 
-                                <div class="media">
-                                    {block:Title}
-                                        <h3>{Title}</h3>
-                                    {/block:Title}    
-                                    <ul class="chat">
-                                        {block:Lines}<li class="{Alt}">{block:Label}<span class="person">{Label}</span>{/block:Label}<span class="said"> {Line} </span></li>{/block:Lines}
-                                    </ul>
-                                </div>
-                                {block:Caption}     
-                                    <div class="content">
-                                        {Caption}
-                                    </div>
-                                {/block:Caption}
-                        {/block:Chat}
-                        {block:Answer}
-                            <article id="ant-{PostID}" class="ants-item-three post post-answer" data-pt="answer" data-id="{PostID}">
-                                <div class="media">
-                                    <div class="asker-box cl">
-                                        <img src="{AskerPortraitURL-24}"/><span class="the-asker">{Asker} asked: {Question}</span>
-                                    </div>
-                                    <div class="answer">
-                                        {Answer}
-                                    </div>
-                                </div>
-                                {block:Caption}     
-                                    <div class="content">
-                                        {Caption}
-                                    </div>
-                                {/block:Caption}
-                        {/block:Answer}
-                            {block:PermalinkPage}
-                                {block:Date}
-                                    <div class="post-meta cl">
-                                        <div class="meta left">
-                                            <a href="{Permalink}" class="meta-date">
-                                                <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{DayOfMonth}{DayOfMonthSuffix} {Month} {Year}</time> 
-                                            </a>
-                                            {block:NoteCount} 
-                                                <a href="{Permalink}" class="meta-notes">{NoteCountWithLabel}</a>
-                                            {/block:NoteCount}
+                                    {block:Caption}     
+                                        <div class="content">
+                                            {Caption}
                                         </div>
-                                        <ul class="share permalink right">
-                                            <li class="tooltip post-share-parent" title="Share this post">
-                                                <a class="post-share-toggle"><i class="fa fa-share"></i></a>
-                                                <ul class="standard-share">
-                                                    <span class="share-facebook" title="Share on Facebook"><a href="https://www.facebook.com/sharer.php?u={Permalink}{block:Title}&t={Title}{/block:Title}" target="_new"><i class="fa fa-facebook"></i>Facebook</a></span>
-                                                    <span class="share-twitter" title="Share on Twitter"><a href="https://twitter.com/intent/tweet?url={ShortURL}" target="_new"><i class="fa fa-twitter"></i>Twitter</a></span>
-                                                    <span class="share-google" title="Share on Google+"><a href="https://plus.google.com/share?url={Permalink}" target="_new"><i class="fa fa-google-plus"></i>Google +</a></span>
-                                                </ul>
-                                            </li>
-                                            <li class="post-like tooltip" title="Like this post">
-                                                {LikeButton color="black" size="7"}<i class="fa fa-heart"></i>
-                                            </li>
-                                            <li class="post-reblog tooltip" title="Reblog this post">
-                                                <a href="{ReblogURL}"><i class="fa fa-lg fa-retweet"></i></a>
-                                            </li>
+                                    {/block:Caption}
+                            {/block:Audio}      
+                            {block:Video}
+                                <article id="ant-{PostID}" class="ants-item-three post post-video" data-pt="video" data-id="{PostID}">
+                                    <div class="media">{Video-500}</div>
+                                    {block:Caption}     
+                                        <div class="content">
+                                            {Caption}
+                                        </div>
+                                    {/block:Caption}
+                            {/block:Video}
+                            {block:Quote}
+                                <article id="ant-{PostID}" class="ants-item-three post post-quote" data-pt="quote" data-id="{PostID}">
+                                    <div class="media">
+                                        <blockquote>{Quote}</blockquote>
+                                        <figcaption>{block:Source}- {Source}{/block:Source}</figcaption>
+                                    </div>
+                                    {block:Caption}     
+                                        <div class="content">
+                                            {Caption}
+                                        </div>
+                                    {/block:Caption}
+                            {/block:Quote}      
+                            {block:Link}
+                                <article id="ant-{PostID}" class="ants-item-three post post-link" data-pt="link" data-id="{PostID}">
+                                    <div class="media">
+                                        <h1><a class="link" href="{URL}">{Name}</a></h1>
+                                        {block:Description}{Description}{/block:Description}
+                                    </div>
+                                    {block:Caption}     
+                                        <div class="content">
+                                            {Caption}
+                                        </div>
+                                    {/block:Caption}
+                            {/block:Link}   
+                            {block:Chat}
+                                <article id="ant-{PostID}" class="ants-item-three post post-chat" data-pt="chat" data-id="{PostID}"> 
+                                    <div class="media">
+                                        {block:Title}
+                                            <h3>{Title}</h3>
+                                        {/block:Title}    
+                                        <ul class="chat">
+                                            {block:Lines}<li class="{Alt}">{block:Label}<span class="person">{Label}</span>{/block:Label}<span class="said"> {Line} </span></li>{/block:Lines}
                                         </ul>
-                                        {block:HasTags}
-                                            <ul class="tags">{block:Tags}<li> <a href="{TagURL}">#{Tag}</a> </li>{/block:Tags}</ul>
-                                        {/block:HasTags}    
                                     </div>
-                                {/block:Date}
-                                {block:NoteCount}
-                                    <div id="permalink-notes" class="cl">
-                                        {PostNotes}
-                                    </div><!-- /.notes -->
-                                {/block:NoteCount}
-                                {block:PermalinkPagination}
-                                    <div class="post-navigation">
-                                        {block:NextPost}
-                                            <div class='fuse-prev-btn tooltip' title="Previous post">
-                                                <a href="{NextPost}"><i class="fa fa-lg fa-long-arrow-left"></i></a>
-                                            </div>
-                                        {/block:NextPost}
-                                                
-                                        {block:PreviousPost}
-                                            <div class='fuse-next-btn tooltip' title="Next post">
-                                                <a href="{PreviousPost}"><i class="fa fa-lg fa-long-arrow-right"></i></a>
-                                            </div>
-                                        {/block:PreviousPost}
+                                    {block:Caption}     
+                                        <div class="content">
+                                            {Caption}
+                                        </div>
+                                    {/block:Caption}
+                            {/block:Chat}
+                            {block:Answer}
+                                <article id="ant-{PostID}" class="ants-item-three post post-answer" data-pt="answer" data-id="{PostID}">
+                                    <div class="media">
+                                        <div class="asker-box cl">
+                                            <img src="{AskerPortraitURL-24}"/><span class="the-asker">{Asker} asked: {Question}</span>
+                                        </div>
+                                        <div class="answer">
+                                            {Answer}
+                                        </div>
                                     </div>
-                                {/block:PermalinkPagination}
-                            {/block:PermalinkPage}
+                                    {block:Caption}     
+                                        <div class="content">
+                                            {Caption}
+                                        </div>
+                                    {/block:Caption}
+                            {/block:Answer}
+                                {block:PermalinkPage}
+                                    {block:Date}
+                                        <div class="post-meta cl">
+                                            <div class="meta left">
+                                                <a href="{Permalink}" class="meta-date">
+                                                    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{DayOfMonth}{DayOfMonthSuffix} {Month} {Year}</time> 
+                                                </a>
+                                                {block:NoteCount} 
+                                                    <a href="{Permalink}" class="meta-notes">{NoteCountWithLabel}</a>
+                                                {/block:NoteCount}
+                                            </div>
+                                            <ul class="share permalink right">
+                                                <li class="tooltip post-share-parent" title="Share this post">
+                                                    <a class="post-share-toggle"><i class="fa fa-share"></i></a>
+                                                    <ul class="standard-share">
+                                                        <span class="share-facebook" title="Share on Facebook"><a href="https://www.facebook.com/sharer.php?u={Permalink}{block:Title}&t={Title}{/block:Title}" target="_new"><i class="fa fa-facebook"></i>Facebook</a></span>
+                                                        <span class="share-twitter" title="Share on Twitter"><a href="https://twitter.com/intent/tweet?url={ShortURL}" target="_new"><i class="fa fa-twitter"></i>Twitter</a></span>
+                                                        <span class="share-google" title="Share on Google+"><a href="https://plus.google.com/share?url={Permalink}" target="_new"><i class="fa fa-google-plus"></i>Google +</a></span>
+                                                    </ul>
+                                                </li>
+                                                <li class="post-like tooltip" title="Like this post">
+                                                    {LikeButton color="black" size="7"}<i class="fa fa-heart"></i>
+                                                </li>
+                                                <li class="post-reblog tooltip" title="Reblog this post">
+                                                    <a href="{ReblogURL}"><i class="fa fa-lg fa-retweet"></i></a>
+                                                </li>
+                                            </ul>
+                                            {block:HasTags}
+                                                <ul class="tags">{block:Tags}<li> <a href="{TagURL}">#{Tag}</a> </li>{/block:Tags}</ul>
+                                            {/block:HasTags}    
+                                        </div>
+                                    {/block:Date}
+                                    {block:NoteCount}
+                                        <div id="permalink-notes" class="cl">
+                                            {PostNotes}
+                                        </div><!-- /.notes -->
+                                    {/block:NoteCount}
+                                    {block:PermalinkPagination}
+                                        <div class="post-navigation">
+                                            {block:NextPost}
+                                                <div class='fuse-prev-btn tooltip' title="Previous post">
+                                                    <a href="{NextPost}"><i class="fa fa-lg fa-long-arrow-left"></i></a>
+                                                </div>
+                                            {/block:NextPost}
+                                                    
+                                            {block:PreviousPost}
+                                                <div class='fuse-next-btn tooltip' title="Next post">
+                                                    <a href="{PreviousPost}"><i class="fa fa-lg fa-long-arrow-right"></i></a>
+                                                </div>
+                                            {/block:PreviousPost}
+                                        </div>
+                                    {/block:PermalinkPagination}
+                                {/block:PermalinkPage}
+                            </article>
+                        {/block:Posts}
                         </article>
-                    {/block:Posts}
-                    </article>
+                </div>
             </div>
-        </div>
         </div>
         <div id="backToTop">
             <i class="fa fa-lg fa-caret-up"></i>
